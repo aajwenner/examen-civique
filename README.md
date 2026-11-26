@@ -15,6 +15,8 @@ A free study tool for the French **examen civique**, the civics test required fo
 
 The questions are in French, as in the real exam. The interface and explanations are in English.
 
+**En français :** utilisez la traduction de votre navigateur (dans Chrome ou Edge : clic droit, « Traduire en français »). L'interface et les explications seront traduites ; les questions et les réponses restent dans leur version officielle en français.
+
 ## Where your scores are kept
 
 Only on your own device. Nothing is sent anywhere, and there is no tracking. In Chrome or Edge on a computer you can also save your scores to a file you choose, which survives clearing the browser and can be moved to another computer. In other browsers, use the backup button now and then.

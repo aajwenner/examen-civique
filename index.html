@@ -183,6 +183,7 @@ button.quiet{padding:6px 10px;font-size:13.5px;font-weight:500}
     <div class="card">
       <h2>How it works</h2>
       <p class="small muted explain">Right and sure: marked known and brought back after three weeks, then at longer gaps. Right and fairly sure: back in a week, and it stays weekly until you answer it as sure. Right but guessed: treated as not known, back tomorrow. Wrong: repeated at the end of the session and again tomorrow. Wrong while sure is flagged so the explanation gets a careful read.</p>
+      <p class="small muted explain">Vous préférez le français ? Utilisez la traduction de votre navigateur (dans Chrome ou Edge : clic droit, « Traduire en français »). Les questions et les réponses restent dans leur version officielle en français.</p>
       <p class="small muted explain" id="prov">Knowledge questions are the official published wording. Each correct answer was checked against the official source linked under it; the wrong options and the practice scenarios were written for this tool.</p>
     </div>
     <div class="card">
@@ -215,8 +216,8 @@ button.quiet{padding:6px 10px;font-size:13.5px;font-weight:500}
   <section id="quiz" class="card" hidden>
     <div class="progress"><i id="pbar" style="width:0"></i></div>
     <div class="meta"><span id="qmeta"></span><span id="qcount"></span></div>
-    <p class="q" id="qtext"></p>
-    <div class="opts" id="opts"></div>
+    <p class="q notranslate" id="qtext" translate="no" lang="fr"></p>
+    <div class="opts notranslate" id="opts" translate="no" lang="fr"></div>
     <div id="mocknav" hidden>
       <div class="actions"><button id="mockquit">Finish exam now</button><button class="primary" id="mocknext">Next question</button></div>
     </div>
@@ -907,7 +908,7 @@ window.BANK = [
 "use strict";
 var BANK = window.BANK || [], THEMES = window.THEMES || {};
 var LISTS = {csp:"CSP", cr:"CR", sit:"Scenarios"};
-var VERSION = "1.0 (26 November 2026)", REPORT_URL = window.REPORT_URL || "";
+var VERSION = "1.1 (26 November 2026)", REPORT_URL = window.REPORT_URL || "";
 var MOCK_K = {pv:5, si:6, dd:5, hg:8, vs:4}, MOCK_S = {pv:6, dd:6}, MOCK_MIN = 45, MK = "civique-mocks-v1";
 var mocks = {}; try{ mocks = JSON.parse(localStorage.getItem(MK) || "{}") || {}; }catch(e){ mocks = {}; }
 var GAP = [1,1,3,7,21,45,90];
@@ -1225,8 +1226,8 @@ function reviewList(items){
   items.forEach(function(x){
     var li = document.createElement("li"); li.className = x.ok ? "l" : "s";
     var tag = document.createElement("div"); var pill = document.createElement("span"); pill.className = "pill"; pill.textContent = x.label || (x.ok ? "Right, but guessed" : "Wrong"); tag.appendChild(pill);
-    var a = document.createElement("div"); a.className = "rq"; a.textContent = x.q.q;
-    var b = document.createElement("div"); b.className = "ra"; var bl = document.createElement("b"); bl.textContent = "Correct answer: "; b.appendChild(bl); b.appendChild(document.createTextNode(x.q.o[x.q.a]));
+    var a = document.createElement("div"); a.className = "rq notranslate"; a.setAttribute("translate","no"); a.lang = "fr"; a.textContent = x.q.q;
+    var b = document.createElement("div"); b.className = "ra"; var bl = document.createElement("b"); bl.textContent = "Correct answer: "; b.appendChild(bl); var ans = document.createElement("span"); ans.className = "notranslate"; ans.setAttribute("translate","no"); ans.lang = "fr"; ans.textContent = x.q.o[x.q.a]; b.appendChild(ans);
     var c = document.createElement("div"); c.className = "rx"; c.textContent = x.q.x;
     li.appendChild(tag); li.appendChild(a); li.appendChild(b); li.appendChild(c); $("reviewlist").appendChild(li);
   });
